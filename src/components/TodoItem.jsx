@@ -7,11 +7,11 @@ function TodoItem({completed, id, title, toggleTodo, deleteTodo}) {
         <input 
           type="checkbox" 
           checked={completed}
-          // onChange={e => toggleTodo(id, e.target.checked)}
+          onChange={e => toggleTodo(id, e.target.checked)}
         />
         {title}
       </label>
-      {/* <button onClick={() => deleteTodo(id)}>Delete</button> */}
+      <button onClick={() => deleteTodo(id)}>Delete</button>
     </li>
 
   )

@@ -18,7 +18,7 @@ function CreateTodoForm({ addTodo }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="todo">Add a task</label>
+        <label htmlFor="todo"></label>
         <input 
           type="text" 
           id="todo"

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import CreateTodoForm from "./CreateTodoForm"
-import TodoList from "./TodoList"
+import React, { useState, useEffect } from 'react';
+import CreateTodoForm from "./CreateTodoForm";
+import TodoList from "./TodoList";
 
 function TodoPage() {
   const [todos, setTodos] = useState(
@@ -10,6 +10,7 @@ function TodoPage() {
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
+
   
   function addTodo(title) {
     setTodos(currentTodos => {
@@ -45,7 +46,8 @@ function TodoPage() {
 
   return (
     <div>
-      <h1>todo list</h1>
+      {/* <button onClick={}>Go to schedule</button> */}
+      <h1>Add a task</h1>
       <CreateTodoForm 
         addTodo={addTodo}
       />
