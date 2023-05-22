@@ -46,7 +46,6 @@ function TodoPage() {
 
   return (
     <div>
-      {/* <button onClick={}>Go to schedule</button> */}
       <h1>Add a task</h1>
       <CreateTodoForm 
         addTodo={addTodo}
