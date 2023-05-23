@@ -15,6 +15,11 @@ function SchedulePage() {
     setInput("");
   };
 
+  function getDate() {
+    var currentDate = new Date().toLocaleDateString();
+    console.log(currentDate);
+  }
+
 
   return (
     <>
@@ -31,8 +36,11 @@ function SchedulePage() {
         </div>
         <button>Enter</button>
       </form>
+      <button onClick={getDate}>Get date</button>
       <h1>Schedule Page</h1>
       {location ? <Weather location={location} /> : null}
+      {/* <h1>Monday</h1>  */}
+
     </>
   )
 }

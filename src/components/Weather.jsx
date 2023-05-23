@@ -7,7 +7,8 @@ function Weather({ location }) {
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-    params: {q: `${location}`},
+    url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
+    params: {q: `${location}`, days: 8},
     headers: {
       'X-RapidAPI-Key': import.meta.env.VITE_WEATHER_KEY,
       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
@@ -27,9 +28,16 @@ function Weather({ location }) {
     getWeatherData();
   }, []);
   
+  function handleClick() {
+    console.log(weatherData.forecast.forecastday[1].day.condition.text);
+    console.log(weatherData.forecast.forecastday[2].day.condition.text);
+    console.log(weatherData.location.name);
+    console.log(weatherData.current.condition.text);
+  }
+
 
   return (
-    <h1>Weather</h1>
+    <button onClick={handleClick}>check weather :3</button>
   )
 }
 
