@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Weather() {
-  const [weatherData, setWeatherData] = useState([]);
+  const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState({latitude: 0, longitude: 0});
-  
+  const [locationAccessGranted, setLocationAccessGranted] = useState(false);
+
   useEffect(() => {
     {
       navigator.geolocation.getCurrentPosition(
@@ -13,12 +14,11 @@ function Weather() {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
           });
+          setLocationAccessGranted(true);
         },
       );
-      console.log(location);
     }
   }, []);
-
 
   const options = {
     method: 'GET',
@@ -46,15 +46,47 @@ function Weather() {
       }
     };
     getWeatherData();
-  }, []);
+  }, [location]);
+    
 
+   //calculate days of the week with dates
+  const day = new Date();
+  const monday = day.getDate() + (day.getDay() + 8) % 7;
+  const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var dates = [];
+  for (let i = 0; i < 7; i++) {
+    const currentDate = new Date();
+    currentDate.setDate(monday + i);
+    const formattedDate = currentDate.getDate();
+    dates.push(formattedDate);
+  }
+  
 
+  const datesOfTheWeek = dates.map((day, index) => {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + index);
+
+    const formattedDate = currentDate.getDate();
+    const weekday = weekdays[currentDate.getDay()];
+
+    return (
+      <div key={index}>
+        {locationAccessGranted && weatherData && (
+          <div>
+            <h2>{weatherData.daily.data[index].weather}</h2>
+          </div>
+        )}
+        <h3 className="schedule-days">{weekday} {formattedDate}</h3>
+      </div>
+    )
+  });
 
   return (
     <>
-      <h1>{console.log(weatherData.daily)}</h1>
-      <h1>{console.log(location)}</h1>
-
+      
+      <div className="schedule-dates">
+        {datesOfTheWeek}
+      </div>
     </>
     
 
