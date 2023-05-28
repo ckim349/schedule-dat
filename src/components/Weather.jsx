@@ -77,6 +77,7 @@ function Weather() {
           </div>
         )}
         <h3 className="schedule-days">{weekday} {formattedDate}</h3>
+        <h3>{index === 0 ? "CURRENT DATE" : null}</h3>
       </div>
     )
   });
