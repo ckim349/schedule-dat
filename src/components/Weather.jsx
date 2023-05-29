@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import background from "../assets/background.png"
 
 function Weather() {
   const [weatherData, setWeatherData] = useState(null);
@@ -70,15 +71,23 @@ function Weather() {
     const weekday = weekdays[currentDate.getDay()];
 
     return (
-      <div key={index}>
+      <table key={index}>
         {locationAccessGranted && weatherData && (
-          <div>
-            <h2>{weatherData.daily.data[index].weather}</h2>
-          </div>
+          <tbody>
+            <tr>
+              <th>{weatherData.daily.data[index].weather}</th>
+            </tr> 
+          </tbody>
         )}
-        <h3 className="schedule-days">{weekday} {formattedDate}</h3>
-        <h3>{index === 0 ? "CURRENT DATE" : null}</h3>
-      </div>
+        <tbody>
+          <tr>
+            <th 
+              className="schedule-days" 
+              style={{border: index == 0 ? "2px solid white" : null, borderRadius: "12px"}}
+            >{weekday} {formattedDate}</th>
+          </tr>
+        </tbody>
+      </table>
     )
   });
 
@@ -87,6 +96,9 @@ function Weather() {
       
       <div className="schedule-dates">
         {datesOfTheWeek}
+      </div>
+      <div>
+        <img className="schedule-background" src={background}></img>
       </div>
     </>
     

@@ -43,9 +43,15 @@
 
 .schedule-dates {
   display: flex;
-  background-color: red;
+  background-color: darkgreen;
+  justify-content: space-evenly;
 }
 
 .schedule-days {
   padding: 20px;
+  
+}
+
+.schedule-background {
+  width: 100%
 }
